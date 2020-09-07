@@ -14,23 +14,21 @@
 
     <div data-role="view" data-init="initData"  data-title="進行量測" style="font-family:'Noto Sans TC';" data-use-native-scrolling="true" data-show="kendoViewReady" >
 
-      <div data-role="content" style="
-                                  background-color: black;
-                                  "> 
+      <div data-role="content" style="background-color: white;"> 
 
-        <p style="font-size:18px; color: white; margin-top:20px; margin-left:20px">1. 請確認<b> 目前</b> 所在的健身房</p>
-        <p id="所在健身房說明" style="font-size:16px; color: gray; width:80%; margin-left:40px;; margin-bottom:5px"></p>
+        <p style="font-size:18px; color:black; margin-top:20px; margin-left:20px">1. 請確認<b> 目前</b> 所在的健身房</p>
+        <p id="所在健身房說明" style="font-size:16px; color:black; width:80%; margin-left:40px;; margin-bottom:5px"></p>
         
         <div id="店面" class="店面陣列" align="center">
           <a id="預設常用健身房標籤" style="font-size: 18px; color: white; background-color:gray; padding:10px;width: 80%" onclick=""></a>        
         </div>           
 
-        <p style="font-size:18px; color: white; margin-left:20px; margin-top: 20px">2. 請按下按鈕，送出測量要求</p>      
+        <p style="font-size:18px; color:black; margin-left:20px; margin-top: 20px">2. 請按下按鈕，送出測量要求</p>      
 
-        <p id="測量限制" style="font-size:16px; color:gray; text-align:left; margin-left:40px;width:80%">為讓更多人使用，距離上次量測須超過一小時，才能再度量測，謝謝您的合作。</p>         
+        <p id="測量限制" style="font-size:16px; color:black; text-align:left; margin-left:40px;width:80%">為讓更多人使用，距離上次量測須超過一小時，才能再度量測，謝謝您的合作。</p>         
         <p id="上次測量時間" style="font-size:16px; color:gray; text-align:center">上次測量時間:</p> 
         
-        <button id="開始測量按鈕" class="NotoSansFont" style="float:left; margin-left: 50px; font-size: 18px; color: white; background-color:red; padding:10px;border-radius:8px; border-style: none" onclick="送出要求測量()">開始測量</button> 
+        <button id="開始測量按鈕" class="NotoSansFont" style="float:left; margin-left: 50px; font-size: 18px; color: white; background-color:#FF4350; padding:10px;border-radius:8px; border-style: none" onclick="送出要求測量()">開始測量</button> 
         <button id="取消測量按鈕" class="NotoSansFont" style="float:right; margin-right: 50px; font-size: 18px; color: white; background-color:teal; padding:10px;border-radius:8px; border-style: none" onclick="取消測量()">取消測量</button>         
         <br><br><br>
         
@@ -184,7 +182,7 @@
           console.log("call API 送出要求測量");
                     
           $("#取消測量按鈕").attr("disabled", false);  
-          $("#取消測量按鈕").css("background-color", "red");    
+          $("#取消測量按鈕").css("background-color", "#FF4350");    
           
           $(".km-back").css("visibility", "hidden");
         

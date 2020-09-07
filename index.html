@@ -94,7 +94,9 @@
       font-size: 18px;
 /*      font-weight: bold;*/
       margin-left: 15px;
-      color: white;
+/*      color: white;*/
+      color: black;
+      font-weight:bold;
     }
 
     .進行量測Input {
@@ -145,15 +147,15 @@
     
     <footer style="display: none"></footer>
  
-    <div style="height:170px; background-color:black; text-align:center">
+    <div style="height:170px; background-color:white; text-align:center">
       <img src="charder.png" height="80px" style="margin-top:10px;margin-bottom:10px"><br>
       <span id="量測記錄title" class="進行量測Label" style="float:left; padding-top: 10px">量測記錄</span>
-      <a class="" style="font-size: 18px; color: white; float:right;margin-right:15px; background-color:red; padding:10px;border-radius:8px " onclick="送出量測要求()">進行量測</a> 
+      <a class="" style="font-size: 18px; color: white; float:right;margin-right:15px; background-color:#FF4350; padding:10px;border-radius:8px " onclick="送出量測要求()">進行量測</a> 
 
       <br><div style="height:30px"></div><hr>      
     </div>
     
-    <div data-role="content" style="background-color: black;">    
+    <div data-role="content" style="background-color: white;">    
         <ul id="紀錄List" data-role="listview" data-source="measurementSource" data-show="testaaa" data-pull-to-refresh="true" data-template="nav-template" data-header-template="header-template" class="main-menu" style="opacity:0.95">
 
           <script type="text/x-kendo-template" id="header-template">
