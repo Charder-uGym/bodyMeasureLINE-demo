@@ -283,9 +283,10 @@ async function checkUserIdExist() {
     $("#formUserEthnicity").val(userProfile[10]);
     
     // formEmergencyPhone 挪來用為 常用預設健身房
-    預設常用健身房 = (userProfile[11]=="undefined")? "永和店":userProfile[11];
+    //預設常用健身房 = (userProfile[11]=="undefined")? "永和店":userProfile[11];
     //$("#預設常用健身房").val(預設常用健身房);  
-    
+    預設常用健身房 ="府中店";
+      
     $("#LINE頭像").attr("src", userProfile[7]);
     
     // 讀取店面名稱和機器序號
@@ -301,7 +302,7 @@ async function checkUserIdExist() {
     
     $("#預設常用健身房").val(預設常用健身房); 
 
-    paramToSend = "?API=31" + "&CustomerId=打鐵健身&StoreId="+$("#預設常用健身房").val();      
+    paramToSend = "?API=31" + "&CustomerId=打鐵健身&StoreId="+預設常用健身房;      
     var res = await callAPI(paramToSend, '讀取店面名稱');
     var machineStatus = res.split(",");
     機器序號 = machineStatus[0];
@@ -309,7 +310,7 @@ async function checkUserIdExist() {
     
     paramToSend = "?API=32" + "&UserId=" + $("#formUserPhone").val(); //userId[1];
     var res = await callAPI(paramToSend, '讀取量測記錄');
-    //console.log(res);
+    console.log(res);
     var 所有量測數據=JSON.parse(res);
     //console.log(所有量測數據);    
     

@@ -16,16 +16,16 @@
 
       <div data-role="content" style="background-color: white;"> 
 
-        <p style="font-size:18px; color:black; margin-top:20px; margin-left:20px">1. 請確認<b> 目前</b> 所在的健身房</p>
-        <p id="所在健身房說明" style="font-size:16px; color:black; width:80%; margin-left:40px;; margin-bottom:5px"></p>
+        <p style="font-size:18px; color:black; margin-top:20px; margin-left:20px">1. 請確認是<b> Demo 機</b></p>
+        <!--<p id="所在健身房說明" style="font-size:16px; color:black; width:80%; margin-left:40px;; margin-bottom:5px"></p>-->
         
-        <div id="店面" class="店面陣列" align="center">
+        <div id="店面" class="店面陣列" align="center" style="display:none" >
           <a id="預設常用健身房標籤" style="font-size: 18px; color: white; background-color:gray; padding:10px;width: 80%" onclick=""></a>        
         </div>           
 
         <p style="font-size:18px; color:black; margin-left:20px; margin-top: 20px">2. 請按下按鈕，送出測量要求</p>      
 
-        <p id="測量限制" style="font-size:16px; color:black; text-align:left; margin-left:40px;width:80%">為讓更多人使用，距離上次量測須超過一小時，才能再度量測，謝謝您的合作。</p>         
+        <!--<p id="測量限制" style="font-size:16px; color:black; text-align:left; margin-left:40px;width:80%">為讓更多人使用，距離上次量測須超過一小時，才能再度量測，謝謝您的合作。</p>         -->
         <p id="上次測量時間" style="font-size:16px; color:gray; text-align:center">上次測量時間:</p> 
         
         <button id="開始測量按鈕" class="NotoSansFont" style="float:left; margin-left: 50px; font-size: 18px; color: white; background-color:#FF4350; padding:10px;border-radius:8px; border-style: none" onclick="送出要求測量()">開始測量</button> 
@@ -140,22 +140,25 @@
       async function 送出要求測量(){
         console.log("送出要求測量", selectedStoreNum, 機器序號[selectedStoreNum]);
         
+        //demo 先固定為 府中店
+        預設常用健身房 = "府中店";
+        
         // 檢查距離上次量測時間
-        var tmpTimeNow     = new Date(toISOStringWithTimeZone());
-        var tmpTimeNowInMs = tmpTimeNow.getTime();
-        $("#debug1").text("現在時間:" +toISOStringWithTimeZone()+" "+tmpTimeNowInMs.toString());
+        //var tmpTimeNow     = new Date(toISOStringWithTimeZone());
+        //var tmpTimeNowInMs = tmpTimeNow.getTime();
+        //$("#debug1").text("現在時間:" +toISOStringWithTimeZone()+" "+tmpTimeNowInMs.toString());
         
         var tmpLastTime     = new Date(上次測量時間Str);
         var tmpLastTimeInMs = tmpLastTime.getTime();  
 
         
-        if ( (tmpTimeNowInMs-tmpLastTimeInMs) < 60000 ) {
-          alert("為讓更多人使用，也是保障您的權益，距離上次量測須超過一小時，才能再度量測，謝謝您的合作。");
-          return;
-        }
+        //if ( (tmpTimeNowInMs-tmpLastTimeInMs) < 60000 ) {
+        //  alert("為讓更多人使用，也是保障您的權益，距離上次量測須超過一小時，才能再度量測，謝謝您的合作。");
+        //  return;
+        //}
          
         // Check if Device is in use
-        paramToSend = "?API=31" + "&CustomerId=打鐵健身&StoreId="+$("#預設常用健身房").val();      
+        paramToSend = "?API=31" + "&CustomerId=打鐵健身&StoreId="+預設常用健身房;      
         var res = await callAPI(paramToSend, '讀取機器狀態');
         console.log(res);
         var machineStatus = res.split(",");
@@ -163,17 +166,18 @@
         var 機器更新時間 = machineStatus[2];
         console.log(目前機器狀態, 機器更新時間);        
         
-        if ((Date.now()- 機器更新時間) > 5*60*1000) {
-          alert("抱歉，此機器未連上雲端，請檢查機器是否有連上網路");
-          return;          
-        }
+        //if ((Date.now()- 機器更新時間) > 5*60*1000) {
+        //  alert("抱歉，此機器未連上雲端，請檢查機器是否有連上網路");
+        //  return;          
+        //}
         if (目前機器狀態.substr(0,3) =="使用中"){
           alert("抱歉，此機器已有人要求量測。請耐心等候");
           return;
         }
         
         
-        if (confirm("為了您的權益，請檢查是在打鐵健身 "+預設常用健身房+" 身體組成分析儀 序號:"+機器序號+"上進行量測。\n\n序號可在機器上查對")) { 
+        //if (confirm("為了您的權益，請檢查是在打鐵健身 "+預設常用健身房+" 身體組成分析儀 序號:"+機器序號+"上進行量測。\n\n序號可在機器上查對")) { 
+        if (confirm("請確定是在 身體組成分析儀 序號:"+機器序號+"上進行量測。\n\n序號可在機器上查對")) { 
           $("#開始測量按鈕").attr("disabled", true);
           $("#開始測量按鈕").css("background-color", "gray"); 
           
